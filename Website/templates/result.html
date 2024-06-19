@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Crop Water System</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <!-- <link href="static/img/favicon.ico" rel="icon"> -->
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="static/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="static/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="static/lib/twentytwenty/twentytwenty.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="static/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary m-1" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-dark m-1" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-secondary m-1" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
+        <a href="index.html" class="navbar-brand p-0">
+            <h1 class="m-0 text-primary"><i class="fas fa-seedling"></i>Crop-Water</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="/" class="nav-item nav-link active">Home</a>
+            </div>
+            <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></button>
+            <a href="/" class="btn btn-primary py-2 px-4 ms-3">Requirement</a>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Full Screen Search Start -->
+    <div class="modal fade" id="searchModal" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center justify-content-center">
+                    <div class="input-group" style="max-width: 600px;">
+                        <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
+                        <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Full Screen Search End -->
+
+
+    <!-- Hero Start -->
+    <div class="container-fluid bg-primary py-5 hero-header mb-5">
+        <div class="row py-3">
+            <div class="col-12 text-center">
+                <h1 class="display-3 text-white animated zoomIn">Result</h1>
+                <a href="/" class="h4 text-white">Home</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="/result" class="h4 text-white">Result</a>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+
+
+<!-- Crop Water Prediction -->
+
+
+<div style="max-width: 1100px; margin: 50px auto; display: flex; justify-content: space-between; background-color: #eafaf9; border: 2px solid #009688; border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); transition: 0.3s; padding: 20px;">
+
+    <div style="flex: 2; padding: 0 20px;">
+        <h2 style="margin: 0; color: #009688; font-size: 32px; font-weight: bold;">Crop Water Prediction</h2>
+        <p style="font-size: 24px; margin-top: 20px; color: #00796b;">The predicted irrigation level for the crop is:</p>
+
+        <table style="width:100%; border-collapse: collapse; margin-top: 20px;">
+            <tr style="background-color: #009688; color: white; font-size: 24px;">
+                <th style="border: 1px solid #009688; padding: 15px; font-size: 28px; width: 100%; text-align: center;">Prediction</th>
+            </tr>
+            <tr style="background-color: #00796b; color: #ffffff;">
+                <td style="border: 1px solid #009688; padding: 15px; font-size: 24px; text-align: center; font-weight: bold;">{{ predicted_irrigation_level }}</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+
+
+<!-- Water Rotaions recommendations-->
+
+<div style="max-width: 1100px; margin: 50px auto; display: flex; justify-content: space-between; background-color: #eafaf9; border: 2px solid #009688; border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); transition: 0.3s; padding: 20px;">
+
+    <div style="flex: 2; padding: 0 20px;">
+
+        {% if crop_type == 'BANANA' %}
+
+        <div style="flex: 2; padding: 0 20px;">
+        <h2 style="margin: 0; color: #009688; font-size: 32px; font-weight: bold;">Crop Water Rotation Recommendations for Banana</h2>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">First Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Provide frequent, shallow irrigation to establish young plants and encourage root growth.</li>
+            <li>Ensure soil remains consistently moist but not waterlogged to support seedling emergence.</li>
+            <li>Apply mulch around the base of banana plants to retain soil moisture and suppress weed growth.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency but maintain soil moisture to support early growth.</li>
+            <li>Monitor soil moisture levels regularly and adjust irrigation as needed to prevent water stress.</li>
+            <li>Avoid overwatering to prevent waterlogging and root rot diseases.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Second Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Increase irrigation to meet the higher water demand during active vegetative growth.</li>
+            <li>Maintain consistent soil moisture during this stage to promote healthy leaf development.</li>
+            <li>Apply balanced fertilizer to support vigorous growth and development of banana plants.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Third Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Maintain consistent soil moisture during flowering and fruit development stages to ensure optimal yield.</li>
+            <li>Provide supplementary irrigation during dry periods to prevent water stress and fruit abortion.</li>
+            <li>Monitor weather conditions and adjust irrigation frequency accordingly to prevent waterlogging or drought stress.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next 3 Months:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Adjust irrigation based on weather conditions and crop water needs to sustain fruit development and ripening.</li>
+            <li>Gradually reduce irrigation frequency as fruits mature and approach harvest to concentrate sugars and enhance flavor.</li>
+            <li>Harvest bananas when fully mature, and reduce irrigation to allow plants to enter dormancy before the next growth cycle.</li>
+        </ul>
+    </div>
+        
+
+        {% elif crop_type == 'BEAN' %}
+        <div style="flex: 2; padding: 0 20px;">
+        <h2 style="margin: 0; color: #009688; font-size: 32px; font-weight: bold;">Crop Water Rotation Recommendations for Beans</h2>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">First Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Keep soil consistently moist to promote germination and emergence of bean seeds.</li>
+            <li>Provide light irrigation to prevent seedling washout and ensure uniform emergence.</li>
+            <li>Monitor soil moisture levels closely and adjust irrigation as needed to maintain optimal conditions.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency but increase water volume to support root development.</li>
+            <li>Ensure soil remains evenly moist to prevent stress and encourage healthy growth.</li>
+            <li>Apply a balanced fertilizer to provide essential nutrients for vigorous vegetative growth.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Second Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Maintain moderate soil moisture levels to support flowering and pod formation.</li>
+            <li>Monitor plant health closely and adjust irrigation based on weather conditions and soil moisture levels.</li>
+            <li>Avoid overwatering to prevent waterlogging and root diseases such as root rot.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Third Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Increase irrigation during pod filling stage to prevent water stress and ensure plump, well-filled pods.</li>
+            <li>Apply a side dressing of nitrogen fertilizer to promote pod development and increase yield.</li>
+            <li>Monitor soil moisture closely and adjust irrigation to match crop water needs as plants approach maturity.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next 3 Months:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency as bean plants mature and approach harvest, allowing soil to dry slightly between waterings.</li>
+            <li>Harvest beans promptly when pods reach optimal size and maturity to prevent overripening and seed deterioration.</li>
+            <li>After harvest, reduce irrigation to allow soil to dry out and prepare for the next crop rotation or fallow period.</li>
+        </ul>
+    </div>
+
+        {% elif crop_type == 'CABBAGE' %}
+        <div style="flex: 2; padding: 0 20px;">
+        <h2 style="margin: 0; color: #009688; font-size: 32px; font-weight: bold;">Crop Water Rotation Recommendations for Cabbage</h2>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">First Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Keep soil consistently moist to promote uniform germination and establishment of cabbage seedlings.</li>
+            <li>Water newly transplanted seedlings immediately after planting to reduce transplant shock.</li>
+            <li>Apply a layer of mulch around cabbage plants to retain soil moisture and suppress weed growth.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Provide consistent irrigation to support early leaf growth and development.</li>
+            <li>Monitor soil moisture levels closely and adjust irrigation as needed to prevent water stress.</li>
+            <li>Avoid overhead irrigation to minimize foliar diseases and promote healthy growth.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Second Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Increase irrigation frequency during head formation stage to ensure rapid growth and prevent bolting.</li>
+            <li>Maintain even soil moisture to prevent cracking and splitting of cabbage heads.</li>
+            <li>Apply a balanced fertilizer to provide essential nutrients for healthy growth and head development.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Third Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Reduce irrigation slightly to prevent excess moisture buildup and minimize risk of disease.</li>
+            <li>Monitor cabbage heads closely for signs of maturity and harvest promptly when heads reach desired size and firmness.</li>
+            <li>After harvest, incorporate organic matter into the soil to improve soil structure and fertility for the next crop.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next 3 Months:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Rotate cabbage with other crops to prevent buildup of pests and diseases specific to brassicas.</li>
+            <li>Monitor soil moisture levels regularly and irrigate as needed to support growth of succeeding crops.</li>
+            <li>Implement cover cropping or green manure practices to replenish soil nutrients and improve soil health.</li>
+        </ul>
+    </div>
+
+
+        {% elif crop_type == 'CITRUS' %}
+<div style="flex: 2; padding: 0 20px;">
+        <h2 style="margin: 0; color: #009688; font-size: 32px; font-weight: bold;">Crop Water Rotation Recommendations for Citrus</h2>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">First Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Keep soil consistently moist to promote uniform germination and establishment of citrus seedlings.</li>
+            <li>Water newly transplanted seedlings immediately after planting to reduce transplant shock.</li>
+            <li>Apply mulch around citrus trees to retain soil moisture, suppress weed growth, and regulate soil temperature.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency but maintain soil moisture to encourage root development.</li>
+            <li>Monitor soil moisture levels closely and irrigate as needed to prevent water stress.</li>
+            <li>Apply a balanced fertilizer to provide essential nutrients for healthy growth and establishment.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Second Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Maintain moderate soil moisture levels to support vegetative growth and establish a strong root system.</li>
+            <li>Apply a layer of organic mulch around citrus trees to conserve moisture and suppress weed growth.</li>
+            <li>Monitor tree health closely and adjust irrigation based on weather conditions and soil moisture levels.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Third Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually increase irrigation to meet the higher water demand during flowering and fruit set.</li>
+            <li>Ensure soil moisture remains consistent during critical growth stages to promote fruit development.</li>
+            <li>Monitor fruit quality and adjust irrigation to prevent water stress and fruit splitting.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next 3 Months:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Adjust irrigation frequency based on weather conditions and crop water needs to sustain fruit development and ripening.</li>
+            <li>Monitor soil moisture closely and irrigate as needed to prevent water stress during hot and dry periods.</li>
+            <li>Harvest citrus fruits at optimal maturity and reduce irrigation to prepare trees for dormancy.</li>
+        </ul>
+    </div>
+
+        {% elif crop_type == 'COTTON' %}
+<div style="flex: 2; padding: 0 20px;">
+        <h2 style="margin: 0; color: #009688; font-size: 32px; font-weight: bold;">Crop Water Rotation Recommendations for Cotton</h2>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">First Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Keep soil consistently moist to promote germination and emergence of cotton seeds.</li>
+            <li>Apply irrigation immediately after planting to ensure soil moisture and promote seedling establishment.</li>
+            <li>Avoid excessive watering to prevent soil compaction and waterlogging.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency but maintain adequate soil moisture for root development.</li>
+            <li>Monitor soil moisture levels regularly and adjust irrigation as needed to prevent water stress.</li>
+            <li>Apply a starter fertilizer to provide essential nutrients for early cotton growth.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Second Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Maintain moderate soil moisture levels to support vegetative growth and minimize water stress.</li>
+            <li>Apply supplemental irrigation during dry periods to ensure consistent plant growth.</li>
+            <li>Monitor cotton plants for signs of water stress and adjust irrigation accordingly.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Third Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Increase irrigation frequency during flowering and boll formation stages to support fruit development.</li>
+            <li>Ensure soil moisture remains consistent to prevent water stress and maximize yield potential.</li>
+            <li>Monitor plant health closely and address any signs of water-related issues promptly.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next 3 Months:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Adjust irrigation based on weather conditions and crop water needs to optimize water use efficiency.</li>
+            <li>Reduce irrigation frequency as cotton plants approach maturity to facilitate boll opening and harvesting.</li>
+            <li>Harvest cotton at optimal maturity and reduce irrigation to prepare fields for the next cropping cycle.</li>
+        </ul>
+    </div>
+
+        {% elif crop_type == 'MAIZE' %}
+<div style="flex: 2; padding: 0 20px;">
+        <h2 style="margin: 0; color: #009688; font-size: 32px; font-weight: bold;">Crop Water Rotation Recommendations for Maize</h2>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">First Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Ensure soil is consistently moist to support germination and emergence of maize seeds.</li>
+            <li>Apply light irrigation immediately after planting to establish seedlings.</li>
+            <li>Monitor soil moisture levels closely and irrigate as needed to prevent drying out of seedbed.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency but maintain adequate soil moisture for root establishment.</li>
+            <li>Monitor maize plants for signs of water stress and adjust irrigation as needed.</li>
+            <li>Apply a balanced fertilizer to provide essential nutrients for early maize growth.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Second Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Maintain moderate soil moisture levels to support vegetative growth and development.</li>
+            <li>Apply supplemental irrigation during dry periods to prevent water stress and promote healthy plant growth.</li>
+            <li>Monitor maize plants for signs of nutrient deficiencies and address promptly with appropriate fertilization.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Third Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Increase irrigation frequency during tasseling and silking stages to support pollination and kernel development.</li>
+            <li>Maintain even soil moisture to prevent stress during critical reproductive stages.</li>
+            <li>Monitor weather conditions closely and adjust irrigation accordingly to optimize water use efficiency.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next 3 Months:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency as maize plants reach maturity and kernels begin to dry down.</li>
+            <li>Harvest maize when kernels reach optimal moisture content and reduce irrigation to prepare fields for next rotation.</li>
+            <li>Implement crop rotation practices to manage pests and diseases and improve soil health for future maize crops.</li>
+        </ul>
+    </div>
+
+        {% elif crop_type == 'MELON' %}
+<div style="flex: 2; padding: 0 20px;">
+        <h2 style="margin: 0; color: #009688; font-size: 32px; font-weight: bold;">Crop Water Rotation Recommendations for Melon</h2>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">First Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Keep soil consistently moist to promote germination and emergence of melon seeds.</li>
+            <li>Provide light irrigation immediately after planting to ensure soil moisture and aid seedling establishment.</li>
+            <li>Avoid overwatering to prevent waterlogging and damping off of seedlings.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency but maintain adequate soil moisture for root development.</li>
+            <li>Monitor soil moisture levels regularly and irrigate as needed to prevent water stress.</li>
+            <li>Apply a balanced fertilizer to provide essential nutrients for early melon growth.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Second Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Maintain moderate soil moisture levels to support vegetative growth and minimize water stress.</li>
+            <li>Apply supplemental irrigation during dry periods to ensure consistent plant growth and development.</li>
+            <li>Monitor melon plants for signs of nutrient deficiencies and address promptly with appropriate fertilization.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Third Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Increase irrigation frequency during flowering and fruit set stages to support fruit development.</li>
+            <li>Ensure soil moisture remains consistent to prevent blossom end rot and fruit cracking.</li>
+            <li>Monitor weather conditions closely and adjust irrigation accordingly to optimize water use efficiency.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next 3 Months:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency as melon plants reach maturity and fruit ripening stage.</li>
+            <li>Harvest melons when fully mature and reduce irrigation to prepare fields for next rotation.</li>
+            <li>Implement crop rotation practices to manage pests and diseases and improve soil health for future melon crops.</li>
+        </ul>
+    </div>
+
+        {% elif crop_type == 'MUSTARD' %}
+<div style="flex: 2; padding: 0 20px;">
+        <h2 style="margin: 0; color: #009688; font-size: 32px; font-weight: bold;">Crop Water Rotation Recommendations for Mustard</h2>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">First Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Keep soil consistently moist to promote germination and emergence of mustard seeds.</li>
+            <li>Provide light irrigation immediately after planting to ensure soil moisture and aid seedling establishment.</li>
+            <li>Monitor soil moisture levels regularly and irrigate as needed to prevent water stress.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency but maintain adequate soil moisture for root development.</li>
+            <li>Monitor mustard plants for signs of water stress and adjust irrigation as needed.</li>
+            <li>Apply a balanced fertilizer to provide essential nutrients for early mustard growth.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Second Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Maintain moderate soil moisture levels to support vegetative growth and minimize water stress.</li>
+            <li>Apply supplemental irrigation during dry periods to ensure consistent plant growth and development.</li>
+            <li>Monitor mustard plants for signs of nutrient deficiencies and address promptly with appropriate fertilization.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Third Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Increase irrigation frequency during flowering and pod development stages to support yield formation.</li>
+            <li>Ensure soil moisture remains consistent to prevent water stress and maximize pod filling.</li>
+            <li>Monitor weather conditions closely and adjust irrigation accordingly to optimize water use efficiency.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next 3 Months:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency as mustard plants reach maturity and pods ripen.</li>
+            <li>Harvest mustard when seeds are fully mature and reduce irrigation to prepare fields for next rotation.</li>
+            <li>Implement crop rotation practices to manage pests and diseases and improve soil health for future mustard crops.</li>
+        </ul>
+    </div>
+
+        {% elif crop_type == 'ONION' %}
+<div style="flex: 2; padding: 0 20px;">
+        <h2 style="margin: 0; color: #009688; font-size: 32px; font-weight: bold;">Crop Water Rotation Recommendations for Onion</h2>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">First Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Keep soil consistently moist to promote germination and emergence of onion seeds.</li>
+            <li>Provide light irrigation immediately after planting to ensure soil moisture and aid seedling establishment.</li>
+            <li>Monitor soil moisture levels regularly and irrigate as needed to prevent water stress.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency but maintain adequate soil moisture for root development.</li>
+            <li>Monitor onion plants for signs of water stress and adjust irrigation as needed.</li>
+            <li>Apply a balanced fertilizer to provide essential nutrients for early onion growth.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Second Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Maintain moderate soil moisture levels to support vegetative growth and minimize water stress.</li>
+            <li>Apply supplemental irrigation during dry periods to ensure consistent plant growth and development.</li>
+            <li>Monitor onion plants for signs of nutrient deficiencies and address promptly with appropriate fertilization.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Third Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Increase irrigation frequency during bulbing stage to support bulb formation.</li>
+            <li>Ensure soil moisture remains consistent to promote bulb enlargement and prevent splitting.</li>
+            <li>Monitor weather conditions closely and adjust irrigation accordingly to optimize water use efficiency.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next 3 Months:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency as onions approach maturity and bulbs begin to mature.</li>
+            <li>Harvest onions when bulbs reach optimal size and reduce irrigation to prepare fields for next rotation.</li>
+            <li>Implement crop rotation practices to manage pests and diseases and improve soil health for future onion crops.</li>
+        </ul>
+    </div>
+
+        {% elif crop_type == 'POTATO' %}
+<div style="flex: 2; padding: 0 20px;">
+        <h2 style="margin: 0; color: #009688; font-size: 32px; font-weight: bold;">Crop Water Rotation Recommendations for Potato</h2>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">First Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Keep soil consistently moist to promote germination and emergence of potato seeds.</li>
+            <li>Provide light irrigation immediately after planting to ensure soil moisture and aid seedling establishment.</li>
+            <li>Monitor soil moisture levels regularly and irrigate as needed to prevent water stress.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency but maintain adequate soil moisture for root development.</li>
+            <li>Monitor potato plants for signs of water stress and adjust irrigation as needed.</li>
+            <li>Apply a balanced fertilizer to provide essential nutrients for early potato growth.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Second Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Maintain moderate soil moisture levels to support vegetative growth and minimize water stress.</li>
+            <li>Apply supplemental irrigation during dry periods to ensure consistent plant growth and development.</li>
+            <li>Monitor potato plants for signs of nutrient deficiencies and address promptly with appropriate fertilization.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Third Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Increase irrigation frequency during tuber initiation and bulking stage to support tuber formation.</li>
+            <li>Ensure soil moisture remains consistent to promote uniform tuber development and prevent tuber malformation.</li>
+            <li>Monitor weather conditions closely and adjust irrigation accordingly to optimize water use efficiency.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next 3 Months:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency as potatoes approach maturity and tuber skins set.</li>
+            <li>Stop irrigation completely during the last few weeks before harvest to allow tubers to mature and skin to set properly.</li>
+            <li>Harvest potatoes when skins have set and reduce irrigation to prepare fields for next rotation.</li>
+        </ul>
+    </div>
+
+        {% elif crop_type == 'RICE' %}
+<div style="flex: 2; padding: 0 20px;">
+        <h2 style="margin: 0; color: #009688; font-size: 32px; font-weight: bold;">Crop Water Rotation Recommendations for Rice</h2>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">First Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Keep rice paddies flooded to promote germination and emergence of rice seeds.</li>
+            <li>Monitor water levels closely and maintain flooded conditions to support early rice growth.</li>
+            <li>Apply additional water as needed to prevent soil drying and ensure uniform seedling establishment.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Continue to maintain flooded conditions to support root development and minimize weed growth.</li>
+            <li>Monitor water depth regularly and replenish as needed to ensure adequate coverage of rice plants.</li>
+            <li>Apply nitrogen fertilizer in flooded conditions to enhance rice growth and yield potential.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Second Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Maintain flooded conditions to support vegetative growth and minimize weed competition.</li>
+            <li>Monitor water quality and drainage to prevent waterlogging and ensure optimal rice growth.</li>
+            <li>Apply phosphorus and potassium fertilizers as needed to support rice tillering and panicle development.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Third Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Continue flooded conditions during panicle initiation and flowering stages to support pollination and grain filling.</li>
+            <li>Monitor water depth and quality closely to prevent nutrient leaching and minimize disease risks.</li>
+            <li>Implement intermittent drying during late grain filling to promote grain maturity and reduce lodging risks.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next 3 Months:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce water depth during ripening and maturation to facilitate grain drying and harvest readiness.</li>
+            <li>Drain rice paddies completely before harvest to allow for easier mechanical harvesting and reduce grain moisture content.</li>
+            <li>Implement proper water management practices post-harvest to prepare fields for subsequent crop rotation.</li>
+        </ul>
+    </div>
+
+        {% elif crop_type == 'SOYABEAN' %}
+<div style="flex: 2; padding: 0 20px;">
+        <h2 style="margin: 0; color: #009688; font-size: 32px; font-weight: bold;">Crop Water Rotation Recommendations for Soybean</h2>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">First Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Keep soil consistently moist to promote germination and emergence of soybean seeds.</li>
+            <li>Provide light irrigation immediately after planting to ensure soil moisture and aid seedling establishment.</li>
+            <li>Monitor soil moisture levels regularly and irrigate as needed to prevent water stress.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency but maintain adequate soil moisture for root development.</li>
+            <li>Monitor soybean plants for signs of water stress and adjust irrigation as needed.</li>
+            <li>Apply a balanced fertilizer to provide essential nutrients for early soybean growth.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Second Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Maintain moderate soil moisture levels to support vegetative growth and minimize water stress.</li>
+            <li>Apply supplemental irrigation during dry periods to ensure consistent plant growth and development.</li>
+            <li>Monitor soybean plants for signs of nutrient deficiencies and address promptly with appropriate fertilization.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Third Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Monitor soil moisture closely during flowering and pod development stages to optimize yield potential.</li>
+            <li>Provide sufficient water during pod filling to support grain development and maximize yields.</li>
+            <li>Monitor weather conditions closely and adjust irrigation accordingly to optimize water use efficiency.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next 3 Months:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency as soybeans approach maturity and pods begin to mature.</li>
+            <li>Harvest soybeans when pods are fully mature and reduce irrigation to prepare fields for next rotation.</li>
+            <li>Implement crop rotation practices to manage pests and diseases and improve soil health for future soybean crops.</li>
+        </ul>
+    </div>
+
+        {% elif crop_type == 'SUGARCANE' %}
+
+<div style="flex: 2; padding: 0 20px;">
+        <h2 style="margin: 0; color: #009688; font-size: 32px; font-weight: bold;">Crop Water Rotation Recommendations for Sugarcane</h2>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">First Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Keep soil consistently moist to promote germination and emergence of sugarcane shoots.</li>
+            <li>Provide sufficient irrigation to ensure soil moisture and encourage early shoot growth.</li>
+            <li>Monitor soil moisture levels regularly and irrigate as needed to prevent water stress.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency but maintain adequate soil moisture for root development.</li>
+            <li>Monitor sugarcane plants for signs of water stress and adjust irrigation as needed.</li>
+            <li>Apply nitrogen fertilizer to support early growth and establish strong root systems.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Second Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Maintain moderate soil moisture levels to support vegetative growth and minimize water stress.</li>
+            <li>Apply supplemental irrigation during dry periods to ensure consistent plant growth and development.</li>
+            <li>Monitor sugarcane plants for signs of nutrient deficiencies and address promptly with appropriate fertilization.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Third Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Continue regular irrigation to support vigorous growth and canopy development.</li>
+            <li>Monitor soil moisture closely during peak growth periods and adjust irrigation as needed.</li>
+            <li>Apply potassium fertilizer to support stalk development and maximize sugar content in sugarcane.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next 3 Months:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency as sugarcane approaches maturity and stalks ripen.</li>
+            <li>Harvest sugarcane when stalks reach optimal maturity and reduce irrigation to prepare fields for next rotation.</li>
+            <li>Implement crop rotation practices to manage pests and diseases and improve soil health for future sugarcane crops.</li>
+        </ul>
+    </div>
+
+        {% elif crop_type == 'TOMATO' %}
+<div style="flex: 2; padding: 0 20px;">
+        <h2 style="margin: 0; color: #009688; font-size: 32px; font-weight: bold;">Crop Water Rotation Recommendations for Tomato</h2>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">First Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Keep soil consistently moist to promote germination and emergence of tomato seeds.</li>
+            <li>Provide light irrigation immediately after planting to ensure soil moisture and aid seedling establishment.</li>
+            <li>Monitor soil moisture levels regularly and irrigate as needed to prevent water stress.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency but maintain adequate soil moisture for root development.</li>
+            <li>Monitor tomato plants for signs of water stress and adjust irrigation as needed.</li>
+            <li>Apply a balanced fertilizer to provide essential nutrients for early tomato growth.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Second Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Maintain moderate soil moisture levels to support vegetative growth and minimize water stress.</li>
+            <li>Apply supplemental irrigation during dry periods to ensure consistent plant growth and development.</li>
+            <li>Monitor tomato plants for signs of nutrient deficiencies and address promptly with appropriate fertilization.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Third Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Continue regular irrigation to support vigorous growth and fruit development.</li>
+            <li>Monitor soil moisture closely during fruiting stage and adjust irrigation as needed to prevent blossom end rot.</li>
+            <li>Apply calcium and magnesium supplements to prevent nutrient deficiencies and improve fruit quality.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next 3 Months:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency as tomato plants mature and fruit production declines.</li>
+            <li>Harvest tomatoes when fruits are fully ripe and reduce irrigation to prepare fields for next rotation.</li>
+            <li>Implement crop rotation practices to manage pests and diseases and improve soil health for future tomato crops.</li>
+        </ul>
+    </div>
+
+
+        {% elif crop_type == 'WHEAT' %}
+<div style="flex: 2; padding: 0 20px;">
+        <h2 style="margin: 0; color: #009688; font-size: 32px; font-weight: bold;">Crop Water Rotation Recommendations for Wheat</h2>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">First Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Keep soil moist but not waterlogged to promote germination and emergence of wheat seeds.</li>
+            <li>Provide light irrigation immediately after planting to ensure soil moisture and aid seedling establishment.</li>
+            <li>Monitor soil moisture levels regularly and irrigate as needed to prevent water stress.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next Two Weeks:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency but maintain adequate soil moisture for root development.</li>
+            <li>Monitor wheat plants for signs of water stress and adjust irrigation as needed.</li>
+            <li>Apply nitrogen fertilizer to support early growth and establish strong root systems.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Second Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Maintain moderate soil moisture levels to support vegetative growth and minimize water stress.</li>
+            <li>Apply supplemental irrigation during dry periods to ensure consistent plant growth and development.</li>
+            <li>Monitor wheat plants for signs of nutrient deficiencies and address promptly with appropriate fertilization.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Third Month:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Continue regular irrigation to support vigorous growth and tillering.</li>
+            <li>Monitor soil moisture closely during stem elongation and booting stages to optimize yield potential.</li>
+            <li>Apply phosphorus and potassium fertilizers to support grain development and maximize yields.</li>
+        </ul>
+
+        <h3 style="font-size: 28px; margin-top: 20px; color: #00796b;">Next 3 Months:</h3>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Gradually reduce irrigation frequency as wheat approaches maturity and grain filling stage.</li>
+            <li>Harvest wheat when grains are fully ripe and moisture content is optimal.</li>
+            <li>Implement crop rotation practices to manage pests and diseases and improve soil health for future wheat crops.</li>
+        </ul>
+    </div>
+
+
+        {% else %}
+        <p style="font-size: 24px; margin-top: 20px; color: #00796b;">Crop type not recognized. Please select a valid crop type.</p>
+        {% endif %}
+    </div>
+
+</div>
+
+
+
+<!-- Soil Health Recommendation -->
+
+
+<div style="max-width: 1100px; margin: 50px auto; display: flex; justify-content: space-between; background-color: #eafaf9; border: 2px solid #009688; border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); transition: 0.3s; padding: 20px;">
+
+    <div style="flex: 2; padding: 0 20px;">
+        <h2 style="margin: 0; color: #009688; font-size: 32px; font-weight: bold;">Soil Health Recommendations</h2>
+
+        {% if soil_type == 'DRY' %}
+        <p style="font-size: 24px; margin-top: 20px; color: #00796b;">For Dry Soil:</p>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Implement drip irrigation systems to conserve moisture.</li>
+            <li>Apply organic mulches like straw or wood chips to the soil surface to retain moisture and suppress weed growth.</li>
+            <li>Use drought-tolerant crop varieties such as sorghum or chickpeas adapted to arid conditions.</li>
+            <li>Practice minimal tillage or no-till farming to reduce soil disturbance and maintain soil moisture levels.</li>
+            <!-- Add more recommendations specific to dry soil -->
+        </ul>
+
+        {% elif soil_type == 'HUMID' %}
+        <p style="font-size: 24px; margin-top: 20px; color: #00796b;">For Humid Soil:</p>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Monitor soil moisture levels regularly to prevent waterlogging and nutrient leaching.</li>
+            <li>Install proper drainage systems like tile drains or French drains to remove excess water from the soil profile.</li>
+            <li>Rotate crops with shallow-rooted species like lettuce or cabbage to prevent soil compaction and improve soil structure.</li>
+            <li>Apply organic matter such as compost or green manure to enhance soil fertility and improve water retention.</li>
+            <!-- Add more recommendations specific to humid soil -->
+        </ul>
+
+        {% elif soil_type == 'WET' %}
+        <p style="font-size: 24px; margin-top: 20px; color: #00796b;">For Wet Soil:</p>
+        <ul style="font-size: 20px; margin-top: 10px;">
+            <li>Improve soil drainage through land leveling or installing drainage ditches to remove excess water from the soil.</li>
+            <li>Choose crops adapted to waterlogged conditions such as rice, cranberries, or certain varieties of wheat and barley.</li>
+            <li>Avoid heavy machinery operation on wet soils to prevent compaction and soil degradation.</li>
+            <li>Incorporate organic matter like compost or peat moss to improve soil structure and water retention.</li>
+            <!-- Add more recommendations specific to wet soil -->
+        </ul>
+
+        {% else %}
+        <p style="font-size: 24px; margin-top: 20px; color: #00796b;">Soil type not recognized. Please input a valid soil type.</p>
+        {% endif %}
+    </div>
+
+</div>
+
+
+
+
+
+
+
+   <br><br><br>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="static/lib/wow/wow.min.js"></script>
+    <script src="static/lib/easing/easing.min.js"></script>
+    <script src="static/lib/waypoints/waypoints.min.js"></script>
+    <script src="static/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="static/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="static/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="static/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="static/lib/twentytwenty/jquery.event.move.js"></script>
+    <script src="static/lib/twentytwenty/jquery.twentytwenty.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="static/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+1. Crop Water prediction
+   Recommendations:
+a. fertilizer prediction 
+b. mixed crop prediction 
+   Additional recommendation:
+i. soil health management
+ii. watering practices
+iii. harvesting guidelines
+iv. crop rotational recommendations
+
+
+
+
+
+
+1. Libraries and Data Collection
+2. Data Visualization
+3. Data Preprocessing - encoding, train&testing,etc. 
+4. Model Building 
+5. Model Evaluation
+6. Prediction on new input data
+
+
+
+
+encoding:
+s.no  name      label encoding
+1     sai       3
+2     Lokesh    0
+3     prem      1
+4     rithwuk   2
+
+Divide into dependent and independent:
+X=  Independent Columns=  CROP_TYPE,SOIL_TYPE	,REGION,TEMPERATURE,WEATHER_CONDITION
+Y= Dependent Columns=  WATER_REQUIREMENT
+
+train&testing:
+5700 rows:    80% training, 20% testing. 
+
+
+
+Model Building:
+1. Take the algorithm.
+2. Train the algorithm.
+3. Predict on the test data.  =  90%, 95%, 99%. 
+
+
+Model Evaluation:
+Classification:  labeled data:   urea
+Regression:  numerical data:  4.78cm  
+
+Regression:
+1. R2 Score - 95.89(90-100)
+2. Mean Squared Error  - 10.8(10-20)
+3. Mean Absolute Error  -  0.5(0-1)
+4. Explained Variance Score  -  0.9(0-1)
+5. Max Error  - 82.7(0-100)
+6. Median Absolute Error   -  0.17(0-1)
+
+Classification:
+1. Accuracy 
+2. Precision
+3. Recall
+4. F1-score
+
+
+Algorithms:
+1. RandomForestRegressor(), 97.53
+2. GradientBoostingRegressor(), 11.42
+3. XGBRegressor(), 61.87
+4. SVR(), 1.4
+5. Lasso(), 0.9
+6. AdaBoostRegressor(), 73.97
+7. DecisionTreeRegressor(), 99.88
+8. CatBoostRegressor(silent=True), 41.65
+9. lgb.LGBMRegressor(), 48.92
+
+
+
+Input:
+1. Crop type
+2. soil type
+3. region
+4. temperature
+5. weather condition
+
+6. humidity
+7. moisture
+8. Nitrogen
+9. Potassium
+10. Phosphorous
+
+11. Rainfall
+12. Ph
+
+
+
+Crop Water requirement
+Fertilizer 
+Mixed Crop
+
+
+
+
